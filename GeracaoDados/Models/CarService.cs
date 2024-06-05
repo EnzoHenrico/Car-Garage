@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace Models
 {
     [JsonObject]
-    internal class CarService
+    public class CarService
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -21,5 +21,7 @@ namespace Models
         
         [JsonProperty("status")]
         public bool Status { get; set; }
+
+        public static readonly string InsertOne = " INSERT [car_plate] [service_id] [status] INTO Service VALUES(@CarPlate, @ServiceId, @Status) ";
     }
 }

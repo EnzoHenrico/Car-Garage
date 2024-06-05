@@ -14,5 +14,7 @@ namespace Models
         
         [JsonProperty("description")]
         public string Description { get; set; }
+
+        public static readonly string InsertOne = " INSERT [description] INTO Service VALUES(@Description) ";
     }
 }

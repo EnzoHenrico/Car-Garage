@@ -20,6 +20,8 @@ namespace Models
         [JsonProperty("color")]
         public string Color { get; set; }
 
+        public static readonly string InsertOne = " INSERT [plate] [name] [year_model] [year_production] [color] INTO Car Values (@Plate, @Name, @YearModel, @YearProduction, @Color) ";
+
         public override string ToString()
         {
             return $"{Name} - {Plate} - {YearProduction} - {Color}";

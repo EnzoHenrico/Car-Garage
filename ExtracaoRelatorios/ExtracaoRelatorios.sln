@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtracaoRelatorios", "ExtracaoRelatorios\ExtracaoRelatorios.csproj", "{08F755D1-D996-4109-B879-506F9B13DDDC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "..\GeracaoDados\Models\Models.csproj", "{3D2FF8E7-1556-4E5D-A9DC-1A7C72100952}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08F755D1-D996-4109-B879-506F9B13DDDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08F755D1-D996-4109-B879-506F9B13DDDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08F755D1-D996-4109-B879-506F9B13DDDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08F755D1-D996-4109-B879-506F9B13DDDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D2FF8E7-1556-4E5D-A9DC-1A7C72100952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D2FF8E7-1556-4E5D-A9DC-1A7C72100952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D2FF8E7-1556-4E5D-A9DC-1A7C72100952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D2FF8E7-1556-4E5D-A9DC-1A7C72100952}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3750D762-CC6D-4D4D-86B0-0F409DEC599A}
+	EndGlobalSection
+EndGlobal

@@ -14,10 +14,10 @@ namespace Models
         public int Id { get; set; }
         
         [JsonProperty("car_plate")]
-        public string CarPalte { get; set; }
+        public string CarPlate { get; set; }
         
         [JsonProperty("service_id")]
-        public int sreviceId { get; set; }
+        public int ServiceId { get; set; }
         
         [JsonProperty("status")]
         public bool Status { get; set; }

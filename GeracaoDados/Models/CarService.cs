@@ -24,14 +24,16 @@ namespace Models
         public static readonly string InsertOne = " INSERT INTO CarService ([car_plate], [service_id], [status]) VALUES(@CarPlate, @ServiceId, @Status); SELECT CAST(SCOPE_IDENTITY() as int) ";
         public static readonly string SelectAll = " SELECT" +
                                                   "    cs.[id]," +
+                                                  "    cs.[status]," +
+                                                  "    cs.[car_plate]," +
+                                                  "    cs.[service_id]," +
                                                   "    c.[plate]," +
                                                   "    c.[name]," +
-                                                  "    c.[year_model]," +
-                                                  "    c.[year_production]," +
+                                                  "    c.[year_model] YearModel," +
+                                                  "    c.[year_production] YearProduction," +
                                                   "    c.[color]," +
                                                   "    s.[id]," +
-                                                  "    s.[description]," +
-                                                  "    cs.[status] " +
+                                                  "    s.[description]" +
                                                   "FROM " +
                                                   "    [CarService] cs" +
                                                   "INNER JOIN" +

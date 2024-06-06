@@ -73,7 +73,7 @@ namespace Repositories
                             carService.Car = car;
                             carService.Service = service;
                             return carService;
-                        }
+                        }, splitOn:"Plate, id"
                     ).ToList();
                 }
             }

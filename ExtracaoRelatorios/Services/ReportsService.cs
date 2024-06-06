@@ -69,7 +69,7 @@ namespace Services
                             new XElement("ID", carService.Service.Id),
                             new XElement("Descricao", carService.Service.Description)
                         ),
-                    new XElement("Status", carService.Status ? "Ativo" : "Inativo")
+                    new XElement("Status", carService.Status ? "Em Andamento" : "Finalizado")
                 )
             );
 

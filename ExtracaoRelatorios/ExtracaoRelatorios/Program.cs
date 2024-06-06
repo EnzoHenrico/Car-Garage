@@ -32,12 +32,12 @@ namespace ExtracaoRelatorios
             // start
             t1.Start();
             t2.Start();
-            //t3.Start();
+            t3.Start();
 
             // wait
             t1.Join();
             t2.Join();
-            //t3.Join();
+            t3.Join();
         }
     }
 }

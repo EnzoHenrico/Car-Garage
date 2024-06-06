@@ -1,20 +1,45 @@
-﻿using Models;
-using System.Data.SqlClient;
-using Dapper;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
+using Models;
 
 namespace Repositories
 {
-    public class ServiceIngestionRepository : IDataIgestionRepository
+    public class ServiceIngestionRepository
     {
         private readonly SqlConnection _sqlConnection = new MsSqlDatabase().Connection;
 
         public int InsertOne(Service service)
         {
-            var id = 0;
+            int id;
             try
             {
                 _sqlConnection.Open();
-                id = _sqlConnection.ExecuteScalar<int>(Service.InsertOne, service);
+                id = _sqlConnection.QuerySingle<int>(Service.InsertOne, service);
+            }
+            catch (SqlException databaseEx)
+            {
+                Console.WriteLine("DATABASE ERROR: " + databaseEx.Message);
+                id = 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: " + ex.Message);
+                id = 0;
+            }
+            finally
+            {
+                _sqlConnection.Close();
+            }
+            return id;
+        }
+
+        public List<Service>? SelectAll()
+        {
+            List<Service> queryResult;
+            try
+            {
+                _sqlConnection.Open();
+                queryResult = _sqlConnection.Query<Service>(Service.SelectAll).ToList();
             }
             catch (SqlException databaseEx)
             {
@@ -30,8 +55,8 @@ namespace Repositories
             {
                 _sqlConnection.Close();
             }
-            return id;
+            return queryResult;
         }
     }
-    
+
 }

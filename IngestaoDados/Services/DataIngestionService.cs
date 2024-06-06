@@ -24,7 +24,7 @@ namespace Services
                 var cars = JsonConvert.DeserializeObject<List<Car>>(jsonCars);
                 foreach (var car in cars)
                 {
-                    InsertCar(car);
+                    _carIngestionRepository.InsertOne(car);
                 }
                 result = true;
             }
@@ -49,6 +49,16 @@ namespace Services
         public int InsertCarService(CarService carService)
         {
             return _carServiceIngestionRepository.InsertOne(carService);
+        }
+
+        public List<Service>? GetAllServices()
+        {
+            return _serviceIngestionRepository.SelectAll();
+        }
+
+        public List<CarService>? GetAllCarServices()
+        {
+            return _carServiceIngestionRepository.SelectAll();
         }
     }
 }

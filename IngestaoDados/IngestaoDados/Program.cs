@@ -1,4 +1,5 @@
-﻿using Controllers;
+﻿using System.Threading.Channels;
+using Controllers;
 using Models;
 
 namespace IngestaoDados
@@ -11,13 +12,19 @@ namespace IngestaoDados
             var filePath = @"C:\Garagem\cars.json";
             while (true)
             {
-                Console.WriteLine("");
+                Console.WriteLine("Entrada de dados para os serviços: \n");
                 Console.WriteLine("1. Carregar dados do arquivo JSON");
                 Console.WriteLine("2. Cadastrar novo carro");
-                Console.WriteLine("3. Entrar com novo serviço");
+                Console.WriteLine("3. Entrar com nova ordem de serviço");
+                Console.WriteLine("4. Cadastrar novo serviço");
                 Console.WriteLine("0. Exit");
-                Console.Write("Select an option: ");
-                string option = Console.ReadLine();
+                var services = controller.GetAllServices();
+                if (services.Count < 1)
+                {
+                    Console.WriteLine("\nAVISO: Não há nenhum serviço cadastrado, cadastre pelo menos 1 para criar ordens de serviço\n");
+                }
+                Console.Write("Selecione uma opção: ");
+                var option = Console.ReadLine();
 
                 switch (option)
                 {
@@ -26,13 +33,21 @@ namespace IngestaoDados
                         Console.WriteLine($"{(jsonInsertResult ? "Registros Inseridos com sucesso!" : "Registros não inseridos...")}");
                         break;
                     case "2":
-                        var carInsertResult = controller.InsertCar(InputCarInfo());
+                        Console.WriteLine("Cadastro de novo carro:\n");
+                        var carInsertResult = controller.InsertCar(InputCar());
                         Console.WriteLine($"{(carInsertResult != string.Empty ? "Carro cadastrado com sucesso!" : "Registro não inserido...")}");
                         break;
                     case "3":
-                        var serviceInsertResult = controller.InsertCarService(InputCarServiceInfo());
-                        Console.WriteLine($"{(serviceInsertResult > 0 ? "Serviço cadastrado com sucesso!" : "Registro não inserido...")}");
+                        Console.WriteLine("Entrada de ordem de serviço:\n Servicos disponiveis:");
+                        services.ForEach(service => Console.WriteLine("- " + service));
+                        var carServiceInsertResult = controller.InsertCarService(InputCarService());
+                        Console.WriteLine($"{(carServiceInsertResult != 0 ? "Serviço cadastrado com sucesso!" : "Registro não inserido...")}");
                         break;
+                    case "4":
+                        Console.WriteLine("Cadastro de novo servico:\n");
+                        var serviceInsertResult = controller.InsertService(InputService());
+                        Console.WriteLine($"{(serviceInsertResult != 0 ? "Serviço cadastrado com sucesso!" : "Registro não inserido...")}");
+                        return;
                     case "0":
                         Console.WriteLine("Saindo...");
                         return;
@@ -44,10 +59,8 @@ namespace IngestaoDados
             }
         }
 
-        static Car InputCarInfo()
+        static Car InputCar()
         {
-            Console.Write("Cadastro de novo carro:\n");
-         
             Console.Write("Placa do carro: ");
             string plate = Console.ReadLine();
 
@@ -66,17 +79,28 @@ namespace IngestaoDados
             return new Car { Plate = plate, Name = name, YearModel = yearModel, YearProduction = yearProduction, Color = color };
         }
 
-        static CarService InputCarServiceInfo()
+        static Service InputService()
         {
-            Console.Write("Entrada de novo serviço:\n");
+            Console.Write("Descrição do serviço: ");
+            string description = Console.ReadLine();
 
-            Console.Write("Digite a polaca do carro: ");
+            return new Service {  Description = description };
+        }
+
+        static CarService InputCarService()
+        {
+            Console.Write("Digite a placa do carro que será feito o serviço: ");
             string carPlate = Console.ReadLine();
             
-            Console.Write("Qual a descrição do serviço: ");
-            string descricaoServico = Console.ReadLine();
+            Console.Write("Qual o id do servico: ");
+            int serviceId = int.Parse(Console.ReadLine());
 
-            return new(); // TODO: Regra de negócio para inserção do serviço e relacionar ao carro
+            return new()
+            {
+                Car = new Car { Plate = carPlate },
+                Service = new Service { Id = serviceId },
+                Status = false
+            };
         }
     }
 }

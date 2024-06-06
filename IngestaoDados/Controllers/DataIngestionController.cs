@@ -28,5 +28,15 @@ namespace Controllers
         {
             return _carIngestionService.InsertCarService(carService);
         }
+
+        public List<Service>? GetAllServices()
+        {
+            return _carIngestionService.GetAllServices();
+        }
+
+        public List<CarService>? GetAllCarServices()
+        {
+            return _carIngestionService.GetAllCarServices();
+        }
     }
 }

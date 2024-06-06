@@ -1,10 +1,10 @@
-﻿using System.Data.SqlClient;
-using Dapper;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using Models;
 
 namespace Repositories
 {
-    public class CarIngestionRepository : IDataIgestionRepository
+    public class CarIngestionRepository
     {
         private readonly SqlConnection _sqlConnection = new MsSqlDatabase().Connection;
 

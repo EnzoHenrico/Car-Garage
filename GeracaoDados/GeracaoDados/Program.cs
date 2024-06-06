@@ -94,7 +94,8 @@ namespace GeracaoDados
                 }
                 using var writer = new StreamWriter(path + fileName);
                 writer.WriteLine(json);
-                
+                Console.WriteLine(json);
+
                 Console.WriteLine($"Criado arquivos com sucesso em: {path + fileName}");
             }
             catch (Exception ex)

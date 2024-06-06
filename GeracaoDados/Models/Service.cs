@@ -15,6 +15,12 @@ namespace Models
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        public static readonly string InsertOne = " INSERT [description] INTO Service VALUES(@Description) ";
+        public static readonly string InsertOne = " INSERT INTO Service ([description]) VALUES(@Description); SELECT CAST(SCOPE_IDENTITY() as int) ";
+        public static readonly string SelectAll = " SELECT [id], [description] FROM Service ";
+
+        public override string ToString()
+        {
+            return $"{Id}: {Description}";
+        }
     }
 }
